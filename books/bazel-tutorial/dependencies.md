@@ -33,12 +33,13 @@ package main
 import (
 	"fmt"
 
-	"github.com/tokibi/bazel-tutorial/4-deps/pkg/common"
+	"github.com/tokibi/bazel-tutorial/dependencies/internal/pkg/common"
 )
 
 func main() {
 	fmt.Println(common.HelloString())
 }
+
 ```
 
 このファイルをgoコマンドに渡して実行すると正常に動きます。
