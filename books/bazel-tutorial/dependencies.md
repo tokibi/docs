@@ -39,7 +39,6 @@ import (
 func main() {
 	fmt.Println(common.HelloString())
 }
-
 ```
 
 このファイルをgoコマンドに渡して実行すると正常に動きます。
@@ -126,7 +125,7 @@ gazelle_dependencies()
 ```python
 load("@bazel_gazelle//:def.bzl", "gazelle")
 
-# gazelle:prefix github.com/tokibi/bazel-tutorial/4-deps
+# gazelle:prefix github.com/tokibi/bazel-tutorial/dependencies/internal
 gazelle(name = "gazelle")
 ```
 
