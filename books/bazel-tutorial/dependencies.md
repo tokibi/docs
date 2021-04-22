@@ -135,7 +135,7 @@ gazelle(name = "gazelle")
 $ bazel run //:gazelle -- update -mode diff
 ```
 
-> 補足: `--` 以降の文字列はサブコマンドとしてgazelleにそのまま渡されます。そのため上記コマンドは、bazelを通して `gazelle update -mode diff` を実行していることになります。`--` 以降が存在しない場合はgazelle実行時ののデフォルトサブコマンドである `gazelle update` が実行されます。
+> 補足: `--` 以降の文字列はサブコマンドとしてgazelleにそのまま渡されます。そのため上記コマンドは、bazelを通して `gazelle update -mode diff` を実行していることになります。`--` 以降が存在しない場合はgazelle実行時のデフォルトサブコマンドである `gazelle update` が実行されます。
 
 出力は次のようになります。
 
@@ -175,9 +175,9 @@ $ bazel run //:gazelle -- update -mode diff
 +
 ```
 
-これまで `cmd/hello/BUILD.bazel` には `go_binary` ルールを使ったtargetしかありませんでしたが、新たに `go_library` ルールのtargetも追加されています。また、`pkg/common` にもBUILDファイルが新規生成されており、このpackageが `:common` targetでライブラリとしてworkspace内に公開されていることがわかります。
+これまで `cmd/hello/BUILD.bazel` には `go_binary` ルールを使ったtargetしかありませんでしたが、新たに `go_library` ルールのtargetが追加されました。また、`pkg/common` にもBUILDファイルが新規生成されており、このpackageが `:common` targetでライブラリとしてworkspace内に公開されていることがわかります。
 
-`:hello_lib` targetの `deps` 属性を見ると、新規作成された `//pkg/common:common` targetが指定されていることがわかりますね。これで、Goのソースコード内のimport文に相当する処理が、bazelのworkspace内でも行われるようになりました。変更内容の確認ができたところで、実際にこれらの変更をファイルに反映して、先ほど失敗した `:hello` targetを再度実行してみましょう。
+`:hello_lib` targetの `deps` 属性を見ると、新規作成された `//pkg/common:common` targetが指定されていますね。これで、Goのソースコード内のimport文に相当する処理が、bazelのworkspace内でも行われるようになりました。変更内容の確認ができたところで、実際にこれらの変更をファイルに反映して、先ほど失敗した `:hello` targetを再度実行してみましょう。
 
 ```console
 $ bazel run //:gazelle
@@ -195,7 +195,7 @@ INFO: Build completed successfully, 6 total actions
 hello
 ```
 
-今度は正常にビルドできました。Goアプリケーションのリポジトリでpackageを分割した場合には、gazelleを実行しておけば依存関係を正しく解決してくれることがわかります。
+今度は正常に実行できました。Goアプリケーションのリポジトリでpackageを分割した場合には、gazelleを実行しておけば依存関係を正しく解決してくれることがわかります。
 
 ## 外部ライブラリを利用するアプリケーションのビルド
 
